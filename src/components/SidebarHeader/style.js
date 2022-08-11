@@ -26,4 +26,8 @@ export const Options = styled.div`
         height: 30px;
         cursor: pointer;
     }
+
+    @media (max-width: 920px) {
+        gap: 2em;
+    }
 `

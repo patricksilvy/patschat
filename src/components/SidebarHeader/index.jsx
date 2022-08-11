@@ -10,7 +10,7 @@ import {
   AiOutlineUsergroupAdd,
  } from "react-icons/ai"
 
-const SidebarHeader = ({ setUserChat }) => {
+const SidebarHeader = ({ setUserChat, openSidebar, setOpenSidebar }) => {
   const [user] = useAuthState(auth);
   const refChat = db
     .collection("chats")
@@ -50,8 +50,8 @@ const SidebarHeader = ({ setUserChat }) => {
         
         <Options>
           <AiOutlineUserAdd onClick={handleCreateChat} />
-          <AiOutlineUsergroupAdd/>
-          <AiOutlineMenuFold/>
+          <AiOutlineUsergroupAdd />
+          <AiOutlineMenuFold onClick={() => setOpenSidebar(!openSidebar)}/>
         </Options>
     </Container>
   );

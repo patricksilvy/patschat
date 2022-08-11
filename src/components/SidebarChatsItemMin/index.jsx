@@ -37,15 +37,16 @@ const SidebarChatsItem = ({
         <Container onClick={hendleNewChat} className={active}>
             {Avatar ? 
                 <img 
+                    referrerpolicy="no-referrer"
                     src={Avatar?.photoURL} 
                     alt="foto de perfil"
                     onError={({ currentTarget }) => {
                         currentTarget.onerror = null; // prevents looping
                         currentTarget.src='/useDefalt.svg';
                     }}
-                />  
-                : <AiOutlineUser/>}
-            <p>{item.split("@")[0]}</p>
+                />
+                : <AiOutlineUser/>
+            }
         </Container>
     )
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment} from "react";
+import React, { useEffect, Fragment, useState} from "react";
 import { auth, db } from "./firebase";
 import { useAuthState } from 'react-firebase-hooks/auth'
 
@@ -9,6 +9,7 @@ import Sidebar from "./components/Sidebar";
 
 const App = () => {    
     const [user, loading] = useAuthState(auth)
+    const [openSidebar, setOpenSidebar] = useState(true)
 
     useEffect(() => {
         if(user) {
@@ -36,7 +37,7 @@ const App = () => {
     return <Fragment>
         <GlobalStyle />
 
-        <Sidebar />
+        <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar}/>
     </Fragment>
 }
 

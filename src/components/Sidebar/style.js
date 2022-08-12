@@ -4,7 +4,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     height: 100vh;
-    width: 35vw;
+    width: 30vw;
 
     @media (max-width: 620px) {
         width: 100vw;

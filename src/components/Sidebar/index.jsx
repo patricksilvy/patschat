@@ -3,20 +3,79 @@ import { Container, ContainerMin } from './style'
 import SidebarChats from '../SidebarChats'
 import SidebarHeader from '../SidebarHeader'
 import SidebarHeaderMin from "../SidebarHeaderMin"
+import { AnimatePresence, motion } from "framer-motion"
 
 const Sidebar = ({
     openSidebar,
     setOpenSidebar
 }) => {
+    const animations = {
+        sidebar: {
+            initial:{
+                x: "-30vw", 
+                opacity: 0, 
+                width: "0vw"
+            },
+            animate: {
+                x: 0, 
+                opacity: 1,
+                width: "30vw"
+            },
+            exit: {
+                x: "-30vw",
+                opacity: 0
+            }
+        },
+        sidebarMin: {
+            initial: {
+                x: "-70px",
+                opacity: 0,
+                width: "0px"
+            },
+            animate: {
+                x: 0, 
+                opacity: 1,
+                width: "70px"
+            },
+            exit:{
+                x: "-70px",
+                opacity: 0
+            }
+        },
+        transition: {
+            ease: "easeInOut", 
+            duration: 0.5
+        }
+    }
+    
     return(
-        openSidebar ? <Container>
-            <SidebarHeader openSidebar={openSidebar} setOpenSidebar={setOpenSidebar}/>
-            <SidebarChats openSidebar={openSidebar} />
-        </Container>
-        : <ContainerMin>
-            <SidebarHeaderMin openSidebar={openSidebar} setOpenSidebar={setOpenSidebar}/>
-            <SidebarChats openSidebar={openSidebar} />
-        </ContainerMin>
+        <AnimatePresence exitBeforeEnter="true">
+            {openSidebar ? 
+                <motion.div
+                    key="Sidebar"
+                    initial={animations.sidebar.initial}
+                    animate={animations.sidebar.animate}
+                    exit={animations.sidebar.exit}
+                    transition={animations.transition}
+                >
+                    <Container>
+                        <SidebarHeader openSidebar={openSidebar} setOpenSidebar={setOpenSidebar}/>
+                        <SidebarChats openSidebar={openSidebar} />
+                    </Container>
+                </motion.div>   
+            :    <motion.div
+                    key="SidebarMin"
+                    initial={animations.sidebarMin.initial}
+                    animate={animations.sidebarMin.animate}
+                    exit={animations.sidebarMin.exit}
+                    transition={animations.transition}
+                >
+                    <ContainerMin>
+                        <SidebarHeaderMin openSidebar={openSidebar} setOpenSidebar={setOpenSidebar}/>
+                        <SidebarChats openSidebar={openSidebar} />
+                    </ContainerMin>
+                </motion.div>}
+        </AnimatePresence>
     )
 }
 

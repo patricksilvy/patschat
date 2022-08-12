@@ -7,7 +7,7 @@ import SidebarChatsItem from "../SidebarChatsItem"
 import SidebarChatsItemMin from "../SidebarChatsItemMin"
 import { Container } from './style'
 
-const SidebarChats = ({ setUserChat, userChat, openSidebar }) => {
+const SidebarChats = ({ setUserChat, userChat, openSidebar, setOpenSidebar }) => {
     const [user] = useAuthState(auth)
 
     const refChat = db
@@ -26,6 +26,7 @@ const SidebarChats = ({ setUserChat, userChat, openSidebar }) => {
                         user={user}
                         setUserChat={setUserChat}
                         active={userChat?.chatId === item.id ? "active": ""}
+                        setOpenSidebar={setOpenSidebar}
                     />
                     : <SidebarChatsItemMin
                         id={item.id}

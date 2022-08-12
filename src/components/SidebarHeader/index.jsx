@@ -44,8 +44,9 @@ const SidebarHeader = ({ setUserChat, openSidebar, setOpenSidebar }) => {
   return (
     <Container>
         <img 
-            src={user?.photoURL}
-            onClick={() => [auth.signOut(), setUserChat(null)]}
+          referrerPolicy="no-referrer"
+          src={user?.photoURL}
+          onClick={() => [auth.signOut(), setUserChat(null)]}
         />
         
         <Options>

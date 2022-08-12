@@ -37,7 +37,7 @@ const SidebarChatsItem = ({
         <Container onClick={hendleNewChat} className={active}>
             {Avatar ? 
                 <img 
-                    referrerpolicy="no-referrer"
+                    referrerPolicy="no-referrer"
                     src={Avatar?.photoURL} 
                     alt="foto de perfil"
                     onError={({ currentTarget }) => {

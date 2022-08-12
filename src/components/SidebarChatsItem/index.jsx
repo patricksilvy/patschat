@@ -14,7 +14,8 @@ const SidebarChatsItem = ({
     user,
     users,
     setUserChat,
-    active
+    active,
+    setOpenSidebar
 }) => {
     const [getUserItem] = useCollection(
         db.collection("users").where("email", "==", getUser(users, user))
@@ -31,12 +32,14 @@ const SidebarChatsItem = ({
         }
 
         setUserChat(userChat)
+        setOpenSidebar(false)
     }
 
     return (
         <Container onClick={hendleNewChat} className={active}>
             {Avatar ? 
                 <img 
+                    referrerPolicy="no-referrer"
                     src={Avatar?.photoURL} 
                     alt="foto de perfil"
                     onError={({ currentTarget }) => {

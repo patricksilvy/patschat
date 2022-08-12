@@ -6,8 +6,10 @@ import SidebarHeaderMin from "../SidebarHeaderMin"
 import { AnimatePresence, motion } from "framer-motion"
 
 const Sidebar = ({
+    userChat,
+    setUserChat,
     openSidebar,
-    setOpenSidebar
+    setOpenSidebar,
 }) => {
     const animations = {
         sidebar: {
@@ -44,7 +46,7 @@ const Sidebar = ({
         },
         transition: {
             ease: "easeInOut", 
-            duration: 0.5
+            duration: 0.4
         }
     }
     
@@ -59,8 +61,17 @@ const Sidebar = ({
                     transition={animations.transition}
                 >
                     <Container>
-                        <SidebarHeader openSidebar={openSidebar} setOpenSidebar={setOpenSidebar}/>
-                        <SidebarChats openSidebar={openSidebar} />
+                        <SidebarHeader 
+                            setUserChat={setUserChat}
+                            openSidebar={openSidebar} 
+                            setOpenSidebar={setOpenSidebar}
+                        />
+                        <SidebarChats 
+                            setUserChat={setUserChat} 
+                            userChat={userChat}
+                            openSidebar={openSidebar} 
+                            setOpenSidebar={setOpenSidebar}
+                        />
                     </Container>
                 </motion.div>   
             :    <motion.div
@@ -71,8 +82,16 @@ const Sidebar = ({
                     transition={animations.transition}
                 >
                     <ContainerMin>
-                        <SidebarHeaderMin openSidebar={openSidebar} setOpenSidebar={setOpenSidebar}/>
-                        <SidebarChats openSidebar={openSidebar} />
+                        <SidebarHeaderMin 
+                            openSidebar={openSidebar} 
+                            setOpenSidebar={setOpenSidebar}
+                        />
+                        <SidebarChats 
+                            setUserChat={setUserChat} 
+                            userChat={userChat}
+                            openSidebar={openSidebar} 
+                            setOpenSidebar={setOpenSidebar}
+                        />
                     </ContainerMin>
                 </motion.div>}
         </AnimatePresence>

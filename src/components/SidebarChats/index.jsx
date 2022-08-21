@@ -14,6 +14,7 @@ const SidebarChats = ({ setUserChat, userChat, openSidebar, setOpenSidebar }) =>
         .collection("chats")
         .where("users", "array-contains", user.email)
 
+    // Pega os chats que possuem nossos emails
     const [chatsSnapshot] = useCollection(refChat)
 
     return <Container>

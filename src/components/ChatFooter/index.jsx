@@ -23,6 +23,7 @@ const ChatFooter = ({chatId}) => {
     }
 
     return <Container>
+        <p><strong>user</strong> Digitando...</p>
         <FormMessage onSubmit={handleSendMessage}>
             <MessageInput 
                 placeholder="Mensage..."

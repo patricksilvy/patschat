@@ -11,15 +11,22 @@ import Chat from './components/Chat'
 
 const App = () => {    
     const [user, loading] = useAuthState(auth)
+    // user: O auth.Userse logado, ou null se não
+    // loading: A booleanpara indicar se o estado de autenticação ainda está sendo carregado
     const [openSidebar, setOpenSidebar] = useState(true)
+    const [openAddContact, setOpenAddContact] = useState(false)
     const [userChat, setUserChat] = useState(null)
-
+    
     useEffect(() => {
         if(user) {
-            db.collection('users').doc(user.id).set({
-                email: user.email,
-                photoURL: user.photoURL
-            })
+            db
+                // collection é a função que busca a coleção no db
+                .collection('users')
+                // doc adiciona um novo documento
+                .doc(user.id).set({
+                    email: user.email,
+                    photoURL: user.photoURL
+               })
         }
     }, [user])
 
@@ -45,6 +52,8 @@ const App = () => {
             setUserChat={setUserChat}
             openSidebar={openSidebar} 
             setOpenSidebar={setOpenSidebar}
+            openAddContact={openAddContact}
+            setOpenAddContact={setOpenAddContact}
         />
         <Chat userChat={userChat}/>
     </Container>

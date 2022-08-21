@@ -1,59 +1,66 @@
 import React from "react";
-import * as EmailValidator from "email-validator";
+// import * as EmailValidator from "email-validator";
 import { auth, db } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollection } from "react-firebase-hooks/firestore";
+// import { useCollection } from "react-firebase-hooks/firestore";
 import { Container, Options } from './style'
-import { 
+import {
   AiOutlineUserAdd,
   AiOutlineMenuFold,
   AiOutlineUsergroupAdd,
- } from "react-icons/ai"
+} from "react-icons/ai"
 
-const SidebarHeader = ({ setUserChat, openSidebar, setOpenSidebar }) => {
-  const [user] = useAuthState(auth);
-  const refChat = db
-    .collection("chats")
-    .where("users", "array-contains", user.email);
-  const [chatsSnapshot] = useCollection(refChat);
+const SidebarHeader = ({ 
+  setUserChat, 
+  openSidebar, 
+  setOpenSidebar ,
+  openAddContact,
+  setOpenAddContact
+}) => {
+  const [user] = useAuthState(auth); // Pegar o usuario logado
 
-  const handleCreateChat = () => {
-    const emailInput = prompt("Escreva o e-mail desejado");
+  // const refChat = db
+  //   .collection("chats") // Pega a a coleção chat
+  //   .where("users", "array-contains", user.email); // Pega todos os users que pussuam nosso email
+  // const [chatsSnapshot] = useCollection(refChat);
 
-    if (!emailInput) return;
+  // const handleCreateChat = () => {
+  //   const emailInput = prompt("Escreva o e-mail desejado");
 
-    if (!EmailValidator.validate(emailInput)) {
-      return alert("E-mail inválido!");
-    } else if (emailInput === user.email) {
-      return alert("Insira um e-mail diferente do seu!");
-    } else if (chatExists(emailInput)) {
-      return alert("Chat já existe!");
-    }
+  //   if (!emailInput) return;
 
-    db.collection("chats").add({
-      users: [user.email, emailInput],
-    });
-  };
+  //   if (!EmailValidator.validate(emailInput)) {
+  //     return alert("E-mail inválido!");
+  //   } else if (emailInput === user.email) {
+  //     return alert("Insira um e-mail diferente do seu!");
+  //   } else if (chatExists(emailInput)) {
+  //     return alert("Chat já existe!");
+  //   }
 
-  const chatExists = (emailChat) => {
-    return !!chatsSnapshot?.docs.find(
-      (chat) => chat.data().users.find((user) => user === emailChat)?.length > 0
-    );
-  };
+  //   db.collection("chats").add({
+  //     users: [user.email, emailInput],
+  //   });
+  // };
+
+  // const chatExists = (emailChat) => {
+  //   return !!chatsSnapshot?.docs.find(
+  //     (chat) => chat.data().users.find((user) => user === emailChat)?.length > 0
+  //   );
+  // };
 
   return (
     <Container>
-        <img 
-          referrerPolicy="no-referrer"
-          src={user?.photoURL}
-          onClick={() => [auth.signOut(), setUserChat(null)]}
-        />
-        
-        <Options>
-          <AiOutlineUserAdd onClick={handleCreateChat} />
-          <AiOutlineUsergroupAdd />
-          <AiOutlineMenuFold onClick={() => setOpenSidebar(!openSidebar)}/>
-        </Options>
+      <img
+        referrerPolicy="no-referrer"
+        src={user?.photoURL}
+        onClick={() => [auth.signOut(), setUserChat(null)]}
+      />
+
+      <Options>
+        <AiOutlineUserAdd onClick={() => setOpenAddContact(!openAddContact)} />
+        <AiOutlineUsergroupAdd />
+        <AiOutlineMenuFold onClick={() => setOpenSidebar(!openSidebar)} />
+      </Options>
     </Container>
   );
 };

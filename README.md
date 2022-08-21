@@ -7,10 +7,8 @@
 
 <h2>Features</h2>
 
-- [ ] Autenticação google
-- [ ] Pegar as informações do usuário
-- [ ] Envio de mensagem
-- [ ] Cadastrmento da mensagem no db
-- [ ] Excluir mensagem no db
-- [ ] Tela de login
-- [ ] Tela de chat
+- [] Criar digitando...
+- [] Criar notificações
+- [] Problema da altura no mobile
+- [] Tela de login
+- [] Campo de adição de contato

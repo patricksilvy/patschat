@@ -5,12 +5,22 @@ export const Container = styled.div`
     background-color: #36393F;
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 5px 0;
+
+    p {
+        width: 100%;
+        margin: 0;
+        padding: 0 0 0 calc(5% + 10px);
+        color: #999;
+        font-size: small;
+    }
 ` 
 
 export const MessageInput = styled.input`
     font-size: 14px;
     width: 100%;
-    margin: 0px 10px;
     color: #fff;
     background-color: #40444B;
     border: none;
@@ -20,9 +30,9 @@ export const MessageInput = styled.input`
 `
 
 export const FormMessage = styled.form`
-    width: 100%;
-    margin: 10px;
+    width: 95%;
     display: flex;
+    gap: 10px;
     align-items: center;
 
     ${MessageInput}:focus {

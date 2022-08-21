@@ -7,21 +7,29 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5em;
+    gap: 2em;
+    overflow: hidden;
+`
 
-    h1 {
-        font-size: clamp(1em, 1em + 1vw, 1.5em);
-        text-align: center;
-    }
+export const Text = styled.p`
+    font-size: clamp(0.8em, 1em + 1vw, 1.5em);
+    text-align: center;
+`
 
-    button {
-        border: none;
-        border-radius: 20px;
-        color: white;
+export const LoginButton = styled.button`
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    border: solid 2px #5865F2;
+    background-color: #36393f;
+    border-radius: 20px;
+    color: white;
+    font-size: clamp(0.2em, 0.8em + 1vw, 1.5em);
+    padding: 5px 20px;
+    transition: 0.3s ease background;
+    cursor: pointer;
+
+    &:hover {
         background-color: #5865F2;
-        font-size: clamp(1em, 0.8em + 1vw, 1.5em);
-        height: 50px;
-        padding: 5px 20px;
-        
     }
 `

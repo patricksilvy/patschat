@@ -3,6 +3,7 @@ import { Container, ContainerMin } from './style'
 import SidebarChats from '../SidebarChats'
 import SidebarHeader from '../SidebarHeader'
 import SidebarHeaderMin from "../SidebarHeaderMin"
+import SidebarAddChats from '../SidebarAddChats'
 import { AnimatePresence, motion } from "framer-motion"
 
 const Sidebar = ({
@@ -10,6 +11,8 @@ const Sidebar = ({
     setUserChat,
     openSidebar,
     setOpenSidebar,
+    openAddContact,
+    setOpenAddContact
 }) => {
     const animations = {
         sidebar: {
@@ -65,13 +68,17 @@ const Sidebar = ({
                             setUserChat={setUserChat}
                             openSidebar={openSidebar} 
                             setOpenSidebar={setOpenSidebar}
+                            openAddContact={openAddContact}
+                            setOpenAddContact={setOpenAddContact}
                         />
-                        <SidebarChats 
+                        {openAddContact ? 
+                            <SidebarAddChats /> 
+                            : <SidebarChats 
                             setUserChat={setUserChat} 
                             userChat={userChat}
                             openSidebar={openSidebar} 
                             setOpenSidebar={setOpenSidebar}
-                        />
+                        /> }
                     </Container>
                 </motion.div>   
             :    <motion.div
